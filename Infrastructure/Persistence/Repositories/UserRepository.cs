@@ -52,8 +52,6 @@ public class UserRepository : BaseRepositoryWithDbContext, IUserRepository
         {
             await _ctx.Users.AddAsync(user);
             await _ctx.SaveChangesAsync();
-            //to imitate hard logic
-            await Task.Delay(TimeSpan.FromSeconds(5));
         }
         catch (DbUpdateException)
         {

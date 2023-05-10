@@ -35,9 +35,9 @@ public class ControllerIntegrationTests : IClassFixture<TestApplicationFactory>
     [Fact]
     public async Task GetUsers_IsAccessedForAuthorized()
     {
-        await PostUserCreationAsync(new { login = "superuser", password = "superpassword", user_group_id = 2 });
-        var request = new HttpRequestMessage(HttpMethod.Get, "/users")
-            { Headers = { {"Authorization", "Basic ^˩zZ("} } };
+        await PostUserCreationAsync(new { login = "admin", password = "adminadmin", user_group_id = 2 });
+        var request = new HttpRequestMessage(HttpMethod.Get, "/users");
+        request.Headers.Add("Authorization", "Basic YWRtaW46YWRtaW5hZG1pbg==");
         
         using var response = await _client.SendAsync(request);
         

@@ -99,12 +99,12 @@ public class UserService : IUserService
         };
         
         await _userRepository.CreateAsync(newUser);
+        //to imitate hard logic
+        await Task.Delay(TimeSpan.FromSeconds(5));
     }
 
     private string GetPasswordHash(string password)
     {
-        var data = Encoding.UTF8.GetBytes(password);
-        data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-        return Encoding.UTF8.GetString(data);
+        return password.GetHashCode().ToString();
     }
 }
